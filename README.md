@@ -39,9 +39,11 @@ As seen on the screen shot, Kalki consists of a top actionbar, the white canvas 
 - Zoom with Ctrl and Mouse Scroll
 
 ## Installation
-You'll need PyQt6 and Pillow
+You'll need PyQt6 and Pillow.
 
-In the terminal (Visual Studio Code), type:
+Press the arrow on the green code button, download the zip, get the folder out of the zip-File.
+
+You probably will need to type this into the Terminal (Visual Studio Code):
 
 - pip install pyqt6
 
