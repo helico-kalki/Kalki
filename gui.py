@@ -7,7 +7,6 @@ from PIL import Image, ImageFilter, ImageEnhance, ImageOps, ImageDraw, ImageFont
 
 
 app = QApplication(sys.argv)
-#app.setStyle("Fusion")
 
 window = QMainWindow()
 window.setGeometry(0, 0, 1000, 1000)
@@ -84,7 +83,7 @@ class Canvas(QFrame):
         self.move_scale = 1.0
         self.move_rotation = 0.0
         self.move_dragging = False
-        self.move_scaling = None  # "tl" or "br"
+        self.move_scaling = None  
         self.move_rotating = False
         self.move_last_pos = None
         self.move_original_pixmap = None
@@ -113,7 +112,6 @@ class Canvas(QFrame):
         self.text_options.update(options)
 
     def set_selection_mode(self, mode):
-    # Auswahl nur löschen, wenn Modus "ellipse" oder "lasso" ist oder Modus None (clear)
         if mode in ("ellipse", "lasso", None):
             self.selection_active = False
             self.selection_rect = None
@@ -122,7 +120,6 @@ class Canvas(QFrame):
             self.moving_selection = False
             self.selection_offset = QPoint(0, 0)
             self.selection_start = None
-    # Modus setzen, Auswahl bleibt sonst erhalten
         self.selection_mode = mode
         self.update()
 
@@ -181,7 +178,6 @@ class Canvas(QFrame):
             return
         pos = self.get_scaled_mouse_pos(event)
         if self.move_mode and self.move_rect:
-            # Prüfe auf Skalierpunkte
             tl = self.move_rect.topLeft() + self.move_offset
             br = self.move_rect.bottomRight() + self.move_offset
             center = self.move_rect.center() + self.move_offset
@@ -201,7 +197,6 @@ class Canvas(QFrame):
                 self.move_dragging = True
                 self.move_last_pos = pos
                 return
-        # Nur neue Auswahl starten, wenn Auswahlmodus aktiv ist UND keine Auswahl existiert ODER Auswahl gerade aktiv ist
         if self.selection_mode and (not self.selection_rect and not self.selection_path or self.selection_active):
             self.selection_active = True
             self.selection_start = self.get_scaled_mouse_pos(event)
@@ -209,8 +204,6 @@ class Canvas(QFrame):
                 self.selection_path = QPainterPath()
                 self.selection_path.moveTo(self.selection_start)
             return
-        # Wenn Auswahl existiert, nicht überschreiben!
-        # ...restlicher Code wie gehabt...
         if self.moving_selection and self.selection_pixmap:
             self.selection_start = self.get_scaled_mouse_pos(event)
             return
@@ -219,7 +212,7 @@ class Canvas(QFrame):
             if 0 <= pos.x() < self.image.width() and 0 <= pos.y() < self.image.height():
                 color = self.image.toImage().pixelColor(pos)
                 self.set_pen_color(color)
-            self.eyedropper_mode = False  # Nur einmal ausführen
+            self.eyedropper_mode = False  
             self.update()
             return
         if self.shape_mode:
@@ -238,7 +231,6 @@ class Canvas(QFrame):
         pos = self.get_scaled_mouse_pos(event)
         if self.move_mode and self.move_rect:
             if self.move_scaling:
-                # Skalierung berechnen
                 if self.move_scaling == "tl":
                     new_rect = QRect(pos, self.move_rect.bottomRight())
                 else:
@@ -246,13 +238,11 @@ class Canvas(QFrame):
                 new_rect = new_rect.normalized()
                 self.move_rect = new_rect
 
-                # Berechne Skalierungsfaktor relativ zur Originalgröße
                 orig_size = self.move_original_rect.size()
                 new_size = self.move_rect.size()
                 if orig_size.width() > 0 and orig_size.height() > 0:
                     scale_x = new_size.width() / orig_size.width()
                     scale_y = new_size.height() / orig_size.height()
-                    # Optional: proportional skalieren
                     self.move_scale_x = scale_x
                     self.move_scale_y = scale_y
                 self.move_last_pos = pos
@@ -267,7 +257,6 @@ class Canvas(QFrame):
                 self.move_last_pos = pos
                 self.update()
                 return
-        # ...restlicher Code...
         pos = self.get_scaled_mouse_pos(event)
         if self.move_mode and self.move_rect:
             if self.move_dragging:
@@ -348,9 +337,7 @@ class Canvas(QFrame):
             self.moving_selection = False
             self.update()
             return
-        # --- Nur innerhalb der Auswahl Formen zeichnen ---
         if self.shape_mode and self.shape_start and self.shape_end:
-            # Prüfe beide Endpunkte
             if self.can_draw_at(self.shape_start) and self.can_draw_at(self.shape_end):
                 painter = QPainter(self.image)
                 pen = QPen(self.pen_color, self.pen_width, Qt.PenStyle.SolidLine,
@@ -368,7 +355,6 @@ class Canvas(QFrame):
                     p2 = QPoint(rect.left(), rect.bottom())
                     p3 = QPoint(rect.right(), rect.bottom())
                     painter.drawPolygon(p1, p2, p3)
-            # Sonst: Form NICHT zeichnen!
             self.shape_start = None
             self.shape_end = None
             self.update()
@@ -389,7 +375,6 @@ class Canvas(QFrame):
 
     def paintEvent(self, event: QPaintEvent):
         painter = QPainter(self)
-        # Zeichne das Bild auf das Canvas
         scaled = self.image.scaled(
             self.image.size() * self.zoom_level,
             Qt.AspectRatioMode.KeepAspectRatio,
@@ -397,7 +382,6 @@ class Canvas(QFrame):
         )
         painter.drawPixmap(self.pan_offset, scaled)
 
-        # --- Auswahl anzeigen, wenn NICHT im Move-Modus ---
         if not self.move_mode:
             pen = QPen(QColor("red"), 2, Qt.PenStyle.DashLine)
             painter.setPen(pen)
@@ -420,7 +404,6 @@ class Canvas(QFrame):
                 transform.scale(self.zoom_level, self.zoom_level)
                 painter.drawPath(path * transform)
 
-        # --- Move-Modus anzeigen ---
         if self.move_mode and self.move_rect and self.move_pixmap:
             painter.save()
             center = self.move_rect.center() * self.zoom_level + self.pan_offset + self.move_offset * self.zoom_level
@@ -430,8 +413,6 @@ class Canvas(QFrame):
             painter.translate(-self.move_original_pixmap.width() / 2, -self.move_original_pixmap.height() / 2)
             painter.drawPixmap(0, 0, self.move_original_pixmap)
             painter.restore()
-    # Rand und Punkte wie gehabt...
-            # Rand
             pen = QPen(QColor("green"), 2, Qt.PenStyle.DashLine)
             painter.setPen(pen)
             rect = QRect(
@@ -439,12 +420,10 @@ class Canvas(QFrame):
                 self.move_rect.bottomRight() * self.zoom_level + self.pan_offset + self.move_offset * self.zoom_level
             )
             painter.drawRect(rect)
-            # Skalierpunkte
             painter.setBrush(QColor("white"))
             painter.setPen(QPen(QColor("green"), 2))
             painter.drawEllipse(rect.topLeft(), 8, 8)
             painter.drawEllipse(rect.bottomRight(), 8, 8)
-            # Rotationspunkt
             painter.setBrush(QColor("green"))
             painter.drawEllipse(rect.center(), 8, 8)
 
@@ -452,7 +431,6 @@ class Canvas(QFrame):
     
     def copy_selection(self):
         clipboard = QApplication.clipboard()
-        # Wenn keine Auswahl existiert, kopiere das gesamte Bild
         if not (self.selection_rect or self.selection_path):
             clipboard.setPixmap(self.image)
         elif self.selection_mode == "rect" and self.selection_rect:
@@ -518,7 +496,6 @@ class Canvas(QFrame):
             self.update()
 
     def can_draw_at(self, pos: QPoint):
-    # Nur in Auswahl zeichnen
         if self.selection_mode == "rect" and self.selection_rect:
             return self.selection_rect.normalized().contains(pos)
         elif self.selection_mode == "ellipse" and self.selection_rect:
@@ -546,16 +523,13 @@ class Canvas(QFrame):
         self.blur_radius = radius
 
     def apply_blur(self, blur_radius):
-        # QPixmap -> PIL.Image
         qimg = self.image.toImage().convertToFormat(QImage.Format.Format_RGBA8888)
         width = qimg.width()
         height = qimg.height()
         ptr = qimg.bits()
-        ptr.setsize(qimg.sizeInBytes())  # <--- Änderung hier!
+        ptr.setsize(qimg.sizeInBytes())  
         pil_img = Image.frombuffer("RGBA", (width, height), bytes(ptr), "raw", "RGBA", 0, 1)
-        # Blur mit Pillow
         blurred = pil_img.filter(ImageFilter.GaussianBlur(radius=blur_radius))
-        # PIL.Image -> QPixmap
         data = blurred.tobytes("raw", "RGBA")
         qimg_blur = QImage(data, width, height, QImage.Format.Format_RGBA8888)
         self.image = QPixmap.fromImage(qimg_blur)
@@ -609,11 +583,9 @@ class Canvas(QFrame):
         self.update()
 
     def disable_move_mode(self):
-        # Übernehme die transformierte Auswahl ins Bild
         if self.move_mode and self.move_pixmap and self.move_rect:
             painter = QPainter(self.image)
             painter.save()
-            # Zielrechteck berechnen
             target_rect = QRect(
                 self.move_rect.topLeft() + self.move_offset,
                 QSize(
@@ -621,7 +593,6 @@ class Canvas(QFrame):
                     int(self.move_original_pixmap.height() * self.move_scale_y)
                 )
             )
-            # Transformation für Rotation und Skalierung
             transform = QTransform()
             center = target_rect.center()
             transform.translate(center.x(), center.y())
@@ -630,7 +601,7 @@ class Canvas(QFrame):
             painter.setTransform(transform)
             painter.drawPixmap(target_rect, self.move_original_pixmap)
             painter.restore()
-        # Move-Modus zurücksetzen
+
         self.move_mode = False
         self.move_dragging = False
         self.move_scaling = None
@@ -758,7 +729,6 @@ class Canvas(QFrame):
         ptr = qimg.bits()
         ptr.setsize(qimg.sizeInBytes())
         pil_img = Image.frombuffer("RGBA", (width, height), bytes(ptr), "raw", "RGBA", 0, 1)
-        # Farben invertieren
         from PIL import ImageOps
         inverted = ImageOps.invert(pil_img.convert("RGB")).convert("RGBA")
         data = inverted.tobytes("raw", "RGBA")
@@ -988,7 +958,6 @@ shapes_menu.setStyleSheet("""
         QMenu::item:disabled { color: gray; }
         QMenu::item:checked { background-color: #909090; }
         """)
-#shapes_menu.setWindowFlags(shapes_menu.windowFlags() | Qt.WindowType.NoDropShadowWindowHint)
 
 shapes_menu.addAction(rectangle)
 shapes_menu.addAction(triangle)
@@ -1260,7 +1229,6 @@ def open_unsharp_mask_options():
     dialog.setWindowTitle("Unsharp Mask Options")
     layout = QVBoxLayout(dialog)
 
-    # Radius
     radius_layout = QHBoxLayout()
     radius_label = QLabel("Radius:")
     radius_slider = QSlider(Qt.Orientation.Horizontal)
@@ -1274,7 +1242,6 @@ def open_unsharp_mask_options():
     radius_layout.addWidget(radius_text)
     layout.addLayout(radius_layout)
 
-    # Percent
     percent_layout = QHBoxLayout()
     percent_label = QLabel("Percent:")
     percent_slider = QSlider(Qt.Orientation.Horizontal)
@@ -1288,7 +1255,6 @@ def open_unsharp_mask_options():
     percent_layout.addWidget(percent_text)
     layout.addLayout(percent_layout)
 
-    # Threshold
     threshold_layout = QHBoxLayout()
     threshold_label = QLabel("Threshold:")
     threshold_slider = QSlider(Qt.Orientation.Horizontal)
@@ -1302,7 +1268,6 @@ def open_unsharp_mask_options():
     threshold_layout.addWidget(threshold_text)
     layout.addLayout(threshold_layout)
 
-    # Synchronisation Slider <-> Text
     radius_slider.valueChanged.connect(lambda v: radius_text.setText(str(v)))
     percent_slider.valueChanged.connect(lambda v: percent_text.setText(str(v)))
     threshold_slider.valueChanged.connect(lambda v: threshold_text.setText(str(v)))
@@ -1310,7 +1275,6 @@ def open_unsharp_mask_options():
     percent_text.textChanged.connect(lambda t: percent_slider.setValue(int(t) if t.isdigit() else 150))
     threshold_text.textChanged.connect(lambda t: threshold_slider.setValue(int(t) if t.isdigit() else 3))
 
-    # Confirm Button
     confirm_btn = QPushButton("Confirm")
     def apply_unsharp():
         radius = int(radius_text.text())
@@ -1329,18 +1293,15 @@ def open_text_options_dialog():
     dialog.setWindowTitle("Text Options")
     layout = QVBoxLayout(dialog)
 
-    # Text-Eingabe
     text_edit = QLineEdit(canvas.text_options["text"])
     layout.addWidget(QLabel("Text:"))
     layout.addWidget(text_edit)
 
-    # Font-Auswahl
     font_combo = QFontComboBox()
     font_combo.setCurrentFont(canvas.text_options["font"])
     layout.addWidget(QLabel("Font:"))
     layout.addWidget(font_combo)
 
-    # Größe
     size_slider = QSlider(Qt.Orientation.Horizontal)
     size_slider.setRange(8, 128)
     size_slider.setValue(canvas.text_options["size"])
@@ -1353,7 +1314,6 @@ def open_text_options_dialog():
     size_layout.addWidget(size_text)
     layout.addLayout(size_layout)
 
-    # Farbe
     color_btn = QPushButton("Pick Color")
     color_preview = QLabel()
     color_preview.setFixedSize(30, 30)
@@ -1369,7 +1329,6 @@ def open_text_options_dialog():
     color_layout.addWidget(color_preview)
     layout.addLayout(color_layout)
 
-    # Style-Checkboxen
     bold_cb = QCheckBox("Bold")
     bold_cb.setChecked(canvas.text_options["bold"])
     italic_cb = QCheckBox("Italic")
@@ -1385,11 +1344,9 @@ def open_text_options_dialog():
     style_layout.addWidget(strike_cb)
     layout.addLayout(style_layout)
 
-    # Synchronisation Slider <-> Text
     size_slider.valueChanged.connect(lambda v: size_text.setText(str(v)))
     size_text.textChanged.connect(lambda t: size_slider.setValue(int(t) if t.isdigit() else 32))
 
-    # Confirm Button
     confirm_btn = QPushButton("Confirm")
     def apply_text_options():
         options = {
@@ -1419,7 +1376,6 @@ def open_combined_adjustments(canvas):
     layout = QVBoxLayout()
     sliders = {}
 
-    # Utility: Slider + Label horizontal
     def make_slider(name, min_val, max_val, default=0):
         line = QHBoxLayout()
         label = QLabel(name)
@@ -1445,37 +1401,28 @@ def open_combined_adjustments(canvas):
 
         label.setFont(QFont("Lexend Deca", 15))
 
-    # Filterregler
     make_slider("R ", -100, 100)
     make_slider("B ", -100, 100)
-    make_slider("Y ", -100, 100)  # simuliert +Rot +Grün
+    make_slider("Y ", -100, 100)  
 
-    # Visuelle Anpassungen
     make_slider("S ", -100, 100)
     make_slider("B ", -100, 100)
     make_slider("C ", -100, 100)
 
-    
 
-    # Bestätigen
     confirm = QPushButton("Confirm")
     layout.addWidget(confirm)
     dialog.setLayout(layout)
 
-    # Logik zum Anwenden der Effekte
 
     def apply_adjustments():
-            # Konvertiere QPixmap → PIL.Image
         pil_image = ImageQt.fromqpixmap(canvas.image)
 
-        # Farbfilter (Rot, Blau, Gelb) – optional, manuell
         r_shift = sliders["R "].value()
         b_shift = sliders["B "].value()
         y_shift = sliders["Y "].value()
 
-        
 
-        # Farbverschiebung manuell anwenden
         pixels = pil_image.load()
         for x in range(pil_image.width):
             for y in range(pil_image.height):
@@ -1489,19 +1436,17 @@ def open_combined_adjustments(canvas):
                     max(0, min(b, 255))
                 )
 
-        # Sättigung
+
         saturation_factor = 1 + sliders["S "].value() / 100.0
         pil_image = ImageEnhance.Color(pil_image).enhance(saturation_factor)
 
-        # Helligkeit
+
         brightness_factor = 1 + sliders["B "].value() / 100.0
         pil_image = ImageEnhance.Brightness(pil_image).enhance(brightness_factor)
 
-        # Kontrast
         contrast_factor = 1 + sliders["C "].value() / 100.0
         pil_image = ImageEnhance.Contrast(pil_image).enhance(contrast_factor)
 
-        # Zurück zu QPixmap
         qt_image = ImageQt.toqpixmap(pil_image)
         canvas.image = qt_image
         canvas.update()
@@ -1511,4 +1456,5 @@ def open_combined_adjustments(canvas):
     dialog.exec()
 
 window.show()
+
 sys.exit(app.exec())
