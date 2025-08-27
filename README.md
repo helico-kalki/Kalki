@@ -57,6 +57,8 @@ Of course, Python itself is required: https://www.python.org/downloads/
 
 To start, just open the gui.py file.
 
+Some text in the GUI is written with the non-standard font Lexend Deca: https://fonts.google.com/specimen/Lexend+Deca
+
 ## Further Ambition
 The Selection tool is very limited, it's only possible to move the Selection and to only draw in the Selection. Moving a Circular Selection will turn it into a Rectangular Selection. The Color Bucket and the Gradient tool are of course meant to fill the selection, not simply the canvas. Also, in the colored_textures folder there's a texture for Magic Selection - just if someone wants to code it...
 
