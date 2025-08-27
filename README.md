@@ -70,6 +70,7 @@ To give you an idea of my ambition, my favorite design tool is paint.net (not a 
 
 ## Changelog
 1.1 Added Mirror, Rotate and Crop to Selection (also Design changes)
+
 1.0 Base Version
 
 
