@@ -8,7 +8,7 @@
 
 🎈 The reason I wanted to create an image manipulation program was **designing** my own - all textures (and the layout) are by myself. In uploading this, I hope to see my vision take shape in the hands of the internet. This project also willingly **does not have any copyright**, you do not have to give me credit, just don't be evil making profit of something that's not supposed to do so.
 
-## Installation
+## 📥 Installation
 🔽 Download the **ZIP** with the green **Code** button and get the *Kalki-main* folder out of the **ZIP**.
 
 You'll most likely need to type this into the `Terminal` (Visual Studio Code), as you need `PyQt6` and `Pillow`:
@@ -28,7 +28,7 @@ If not working, try
 The font used is `Lexend Deca`, you'll have to install it on your own: https://fonts.google.com/specimen/Lexend+Deca  
 Of course, `Python` itself is required: https://www.python.org/downloads/
 
-## GUI
+## 🖼 GUI
 <img width="1000" height="1055" alt="image" src="https://github.com/user-attachments/assets/385a776b-975b-462b-8845-b42aac07e6bf" />
 
 As seen on the screenshot, the application consists of a **top actionbar**, the **white canvas** and the **task/toolbar**.
