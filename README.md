@@ -53,6 +53,6 @@ You probably will need to type this into the Terminal (Visual Studio Code):
 
 If not working, try py -m pip install (...)
 
-Off course, Python itself is required: https://www.python.org/downloads/
+Of course, Python itself is required: https://www.python.org/downloads/
 
 To start, just open the gui.py file.
