@@ -48,21 +48,21 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
 ### 🥏 Taskbar
 - 🧭 Selection (Rectangular, Circular, Lasso (not working), Delete Selection)
 - 🔆 Move/Scale Selection (must be clicked another time to submit new position/scale)
-- Shapes (Rectangle, Triangle, Ellipse, Lines, Disable Shape Mode)
-- Text (Customization Window, then applying to the canvas by a click)
-- Pen (Black, Width: 2)
-- Marker (Yellow, Translucent, 20)
-- Brush (Blue, 10, Graphics Tablet Compatibility)
-- Eraser (White, 30)
-- Pen Width Slider
-- Pick Color
-- Select Color
-- Fill Canvas with selected Color
-- Fill Canvas with two-color gradient (left to right)
-  
-###🧵 Other Functionality
-- Pan with Middle Mouse Click
-- Zoom with Ctrl and Mouse Scroll
+- 🔶 Shapes (Rectangle, Triangle, Ellipse, Lines, Disable Shape Mode)
+- 🅰 Text (Customization Window, then applying to the canvas by a click)
+- ✏ Pen (Black, Width: 2)
+- 🖍 Marker (Yellow, Translucent, 20)
+- 🖌 Brush (Blue, 10, Graphics Tablet Compatibility)
+- 🧹 Eraser (White, 30)
+- ⏏ Pen Width Slider
+- 🔬 Pick Color
+- 🎨 Select Color
+- ⏹ Fill Canvas with selected Color
+- ⏮ Fill Canvas with two-color gradient (left to right)
+
+### 🎀 Other Functionality
+- 🏓 Pan with Middle Mouse Click
+- 🖱 Zoom with Ctrl and Mouse Scroll
 
 ## Further Ambition
 The Selection tool is very limited, it's only possible to move the Selection and to only draw in the Selection. The Color Bucket and the Gradient tool are of course meant to fill the selection, not simply the canvas. Also, in the colored_textures folder there's a texture for Magic Selection - just if someone wants to code it...  
