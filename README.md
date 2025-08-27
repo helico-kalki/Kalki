@@ -79,6 +79,8 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
 ## 🎆 Further Ambition
 📝 The Color Bucket and the Gradient tool are of course meant to fill the selection, not simply the canvas. This is yet to be implemented.
 
+🖼 Another feature yet to implement would be setting up the size of the canvas.
+
 🎪 I aim for an even more sharp design, but I'm limited by (my knowledge of) PyQt - although this is the best option by functionality. Especially opening the Text tool is something i'd have implemented into the main frame, not an external window.
 
 ## ♻ Changelog
