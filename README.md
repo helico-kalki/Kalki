@@ -43,9 +43,9 @@ As seen on the screenshot, the application consists of a top actionbar, the whit
 ## Installation
 You'll need PyQt6 and Pillow.
 
-Press the arrow on the green code button, download the zip, get the Kalki-main folder out of the zip-File.
+Download the ZIP with the green Code button and get the Kalki-main folder out of the ZIP.
 
-You probably will need to type this into the Terminal (Visual Studio Code):
+You'll most likely need to type this into the Terminal (Visual Studio Code):
 
 - pip install pyqt6
 
