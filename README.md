@@ -44,6 +44,19 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
 - ⏸ Mirror vertically/horizontally
 - 💠 Crop Canvas to Selection
 - ⭐ Effects (12 Options)
+  
+      - 🚦 Combined Adjustments (Red, Blue, Yellow, Saturation, Brightness, Contrast)
+      - 💧 Gaussian Blur
+      - 💧 Smooth
+      - 💧 Smooth More
+      - 🎭 Unsharp Mask
+      - 🗻 Sharpen
+      - 🚧 Contour
+      - 🏁 Find Edges
+      - 🚨 Edge Enhance
+      - 🔑 Emboss
+      - 👀 Detail
+      - 💊 Invert Colors
 
 ### 🥏 Taskbar
 - 🧭 Selection (Rectangular, Circular, Lasso (not working), Delete Selection)
