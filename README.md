@@ -64,12 +64,12 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
 - 🏓 Pan with Middle Mouse Click
 - 🖱 Zoom with Ctrl and Mouse Scroll
 
-## Further Ambition
-The Selection tool is very limited, it's only possible to move the Selection and to only draw in the Selection. The Color Bucket and the Gradient tool are of course meant to fill the selection, not simply the canvas. Also, in the colored_textures folder there's a texture for Magic Selection - just if someone wants to code it...  
+## 🎆 Further Ambition
+📝 The Selection tool is very limited, it's only possible to move the Selection and to only draw in the Selection. The Color Bucket and the Gradient tool are of course meant to fill the selection, not simply the canvas. Also, in the colored_textures folder there's a texture for Magic Selection - just if someone wants to code it...  
 
-I aim for an even more sharp design, but I'm limited by (my knowledge of) PyQt - although this is the best option by functionality. Especially opening the Text tool is something i'd have implemented into the main frame, not an external window.
+🎪 I aim for an even more sharp design, but I'm limited by (my knowledge of) PyQt - although this is the best option by functionality. Especially opening the Text tool is something i'd have implemented into the main frame, not an external window.
 
-## Changelog
+## ♻ Changelog
 08/27/25 | 1.2 | Added **configurable constants** (config.py file) and a **warning message before clearing canvas**
 
 08/27/25 | 1.1 | Added **Mirror**, **Rotate** and **Crop to Selection** (also minor design changes)
