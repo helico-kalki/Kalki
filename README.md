@@ -1,4 +1,6 @@
 # Kalki Image Manipulation Program
+<img width="100" height="100" alt="logo" src="https://github.com/user-attachments/assets/25a8c636-5a0c-4252-bb35-bf082ec20eeb" />
+
 Kalki is a python-built, light image manipulation program aiming an intuitive design, rather than functionality.
 
 This program is 90% AI - I am not good at coding and actually not even in ambition to change this.
