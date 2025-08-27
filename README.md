@@ -25,11 +25,11 @@ As seen on the screen shot, Kalki consists of a top actionbar, the white canvas 
 - Delete Selection
 - Shape Mode/Shapes (4 Shapes)
 - Text
-- Pen
-- Marker
-- Brush (Graphics Tablet Compatibility)
-- Eraser (White Pen)
-- Pen Thickness Slider
+- Pen (Black, Width: 2)
+- Marker (Yellow, Translucent, 20)
+- Brush (Blue, 10, Graphics Tablet Compatibility)
+- Eraser (White, 30)
+- Pen Width Slider
 - Pick Color
 - Select Color
 - Fill Canvas with selected Color
