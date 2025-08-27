@@ -9,7 +9,7 @@ The reason I wanted to create an image manipulation program was designing my own
 
 ## GUI
 <img width="999" height="1052" alt="image" src="https://github.com/user-attachments/assets/b2004a39-97b7-4e79-98b1-c4e1800fd19e" />
-As seen on the screen shot, Kalki consists of a top actionbar, the white canvas and the task/toolbar.
+As seen on the screenshot, the application consists of a top actionbar, the white canvas and the task/toolbar.
 
 ## Actionbar
 - New (Clear Canvas)
