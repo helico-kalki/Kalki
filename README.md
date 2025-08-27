@@ -8,7 +8,7 @@ This program is 90% AI - I am not good at coding and actually not even in ambiti
 The reason I wanted to create an image manipulation program was designing my own - all textures (and the layout) are by myself. In uploading this, I hope to see my vision take shape in the hands of the internet. This project also willingly does not have any copyright, you do not have to give me credit, just don't be evil making profit of something that's not supposed to do so.
 
 ## GUI
-<img width="999" height="1052" alt="GUI" src="https://github.com/user-attachments/assets/b2004a39-97b7-4e79-98b1-c4e1800fd19e" />
+<img width="1000" height="1055" alt="image" src="https://github.com/user-attachments/assets/385a776b-975b-462b-8845-b42aac07e6bf" />
 As seen on the screenshot, the application consists of a top actionbar, the white canvas and the task/toolbar.
 
 ### Actionbar
@@ -18,14 +18,14 @@ As seen on the screenshot, the application consists of a top actionbar, the whit
 - Undo/Redo
 - Copy/Paste
 - Zoom In/Zoom Out
+- Rotate 90 degrees (counter)clockwise
+- Mirror vertically/horizontally
+- Crop Canvas to Selection
 - Effects (12 Options)
 ### Taskbar
-- Move Selection
-- Rectangular Selection
-- Circular Selection
-- Lasso Selection (not working quite yet)
-- Delete Selection
-- Shapes (Rectangle, Triangle, Ellipse, Lines)/Shape Mode (no drawing to shape automation, just en/disabling drawing shapes)
+- Selection (Rectangular, Circular, Lasso (not working), Delete Selection)
+- Move/Scale Selection (must be clicked another time to submit new position/scale)
+- Shapes (Rectangle, Triangle, Ellipse, Lines, Disable Shape Mode)
 - Text (Customization Window, then applying to the canvas by a click)
 - Pen (Black, Width: 2)
 - Marker (Yellow, Translucent, 20)
@@ -67,6 +67,10 @@ The Undo/Redo function is a picky one, while working perfectly when only drawing
 I aim for an even more sharp design, but I'm limited by (my knowledge of) PyQt - although this is the best option by functionality. Especially opening the Text tool is something i'd have implemented into the main frame, not an external window.
 
 To give you an idea of my ambition, my favorite design tool is paint.net (not a website), which is what I'm daily driving. Taking Kalki this far by functionality would be amazing.
+
+## Changelog
+1.1 Added Mirror, Rotate and Crop to Selection (also Design changes)
+1.0 Base Version
 
 
 
