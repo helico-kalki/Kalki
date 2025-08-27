@@ -67,7 +67,7 @@ class Canvas(QFrame):
 
         self.eyedropper_mode = False
 
-        self.selection_mode = None  # "rect", "ellipse", "lasso"
+        self.selection_mode = None  
         self.selection_active = False
         self.selection_rect = None
         self.selection_path = None
@@ -112,6 +112,7 @@ class Canvas(QFrame):
         self.text_options.update(options)
 
     def set_selection_mode(self, mode):
+
         if mode in ("ellipse", "lasso", None):
             self.selection_active = False
             self.selection_rect = None
@@ -120,6 +121,7 @@ class Canvas(QFrame):
             self.moving_selection = False
             self.selection_offset = QPoint(0, 0)
             self.selection_start = None
+
         self.selection_mode = mode
         self.update()
 
@@ -178,6 +180,7 @@ class Canvas(QFrame):
             return
         pos = self.get_scaled_mouse_pos(event)
         if self.move_mode and self.move_rect:
+
             tl = self.move_rect.topLeft() + self.move_offset
             br = self.move_rect.bottomRight() + self.move_offset
             center = self.move_rect.center() + self.move_offset
@@ -197,6 +200,7 @@ class Canvas(QFrame):
                 self.move_dragging = True
                 self.move_last_pos = pos
                 return
+
         if self.selection_mode and (not self.selection_rect and not self.selection_path or self.selection_active):
             self.selection_active = True
             self.selection_start = self.get_scaled_mouse_pos(event)
@@ -204,6 +208,7 @@ class Canvas(QFrame):
                 self.selection_path = QPainterPath()
                 self.selection_path.moveTo(self.selection_start)
             return
+
         if self.moving_selection and self.selection_pixmap:
             self.selection_start = self.get_scaled_mouse_pos(event)
             return
@@ -231,6 +236,7 @@ class Canvas(QFrame):
         pos = self.get_scaled_mouse_pos(event)
         if self.move_mode and self.move_rect:
             if self.move_scaling:
+
                 if self.move_scaling == "tl":
                     new_rect = QRect(pos, self.move_rect.bottomRight())
                 else:
@@ -243,6 +249,7 @@ class Canvas(QFrame):
                 if orig_size.width() > 0 and orig_size.height() > 0:
                     scale_x = new_size.width() / orig_size.width()
                     scale_y = new_size.height() / orig_size.height()
+
                     self.move_scale_x = scale_x
                     self.move_scale_y = scale_y
                 self.move_last_pos = pos
@@ -257,6 +264,7 @@ class Canvas(QFrame):
                 self.move_last_pos = pos
                 self.update()
                 return
+
         pos = self.get_scaled_mouse_pos(event)
         if self.move_mode and self.move_rect:
             if self.move_dragging:
@@ -337,7 +345,9 @@ class Canvas(QFrame):
             self.moving_selection = False
             self.update()
             return
+
         if self.shape_mode and self.shape_start and self.shape_end:
+
             if self.can_draw_at(self.shape_start) and self.can_draw_at(self.shape_end):
                 painter = QPainter(self.image)
                 pen = QPen(self.pen_color, self.pen_width, Qt.PenStyle.SolidLine,
@@ -355,6 +365,7 @@ class Canvas(QFrame):
                     p2 = QPoint(rect.left(), rect.bottom())
                     p3 = QPoint(rect.right(), rect.bottom())
                     painter.drawPolygon(p1, p2, p3)
+
             self.shape_start = None
             self.shape_end = None
             self.update()
@@ -375,6 +386,7 @@ class Canvas(QFrame):
 
     def paintEvent(self, event: QPaintEvent):
         painter = QPainter(self)
+
         scaled = self.image.scaled(
             self.image.size() * self.zoom_level,
             Qt.AspectRatioMode.KeepAspectRatio,
@@ -382,8 +394,9 @@ class Canvas(QFrame):
         )
         painter.drawPixmap(self.pan_offset, scaled)
 
+
         if not self.move_mode:
-            pen = QPen(QColor("red"), 2, Qt.PenStyle.DashLine)
+            pen = QPen(QColor("#00C0FD"), 2, Qt.PenStyle.DashLine)
             painter.setPen(pen)
             if self.selection_mode == "rect" and self.selection_rect:
                 rect = QRect(
@@ -404,6 +417,7 @@ class Canvas(QFrame):
                 transform.scale(self.zoom_level, self.zoom_level)
                 painter.drawPath(path * transform)
 
+
         if self.move_mode and self.move_rect and self.move_pixmap:
             painter.save()
             center = self.move_rect.center() * self.zoom_level + self.pan_offset + self.move_offset * self.zoom_level
@@ -413,24 +427,26 @@ class Canvas(QFrame):
             painter.translate(-self.move_original_pixmap.width() / 2, -self.move_original_pixmap.height() / 2)
             painter.drawPixmap(0, 0, self.move_original_pixmap)
             painter.restore()
-            pen = QPen(QColor("green"), 2, Qt.PenStyle.DashLine)
+
+            pen = QPen(QColor("#00C0FD"), 2, Qt.PenStyle.DashLine)
             painter.setPen(pen)
             rect = QRect(
                 self.move_rect.topLeft() * self.zoom_level + self.pan_offset + self.move_offset * self.zoom_level,
                 self.move_rect.bottomRight() * self.zoom_level + self.pan_offset + self.move_offset * self.zoom_level
             )
             painter.drawRect(rect)
+
             painter.setBrush(QColor("white"))
-            painter.setPen(QPen(QColor("green"), 2))
+            painter.setPen(QPen(QColor("#001121"), 2))
             painter.drawEllipse(rect.topLeft(), 8, 8)
             painter.drawEllipse(rect.bottomRight(), 8, 8)
-            painter.setBrush(QColor("green"))
-            painter.drawEllipse(rect.center(), 8, 8)
+
 
         super().paintEvent(event)
     
     def copy_selection(self):
         clipboard = QApplication.clipboard()
+
         if not (self.selection_rect or self.selection_path):
             clipboard.setPixmap(self.image)
         elif self.selection_mode == "rect" and self.selection_rect:
@@ -496,6 +512,7 @@ class Canvas(QFrame):
             self.update()
 
     def can_draw_at(self, pos: QPoint):
+
         if self.selection_mode == "rect" and self.selection_rect:
             return self.selection_rect.normalized().contains(pos)
         elif self.selection_mode == "ellipse" and self.selection_rect:
@@ -523,13 +540,16 @@ class Canvas(QFrame):
         self.blur_radius = radius
 
     def apply_blur(self, blur_radius):
+
         qimg = self.image.toImage().convertToFormat(QImage.Format.Format_RGBA8888)
         width = qimg.width()
         height = qimg.height()
         ptr = qimg.bits()
         ptr.setsize(qimg.sizeInBytes())  
         pil_img = Image.frombuffer("RGBA", (width, height), bytes(ptr), "raw", "RGBA", 0, 1)
+
         blurred = pil_img.filter(ImageFilter.GaussianBlur(radius=blur_radius))
+
         data = blurred.tobytes("raw", "RGBA")
         qimg_blur = QImage(data, width, height, QImage.Format.Format_RGBA8888)
         self.image = QPixmap.fromImage(qimg_blur)
@@ -583,9 +603,11 @@ class Canvas(QFrame):
         self.update()
 
     def disable_move_mode(self):
+
         if self.move_mode and self.move_pixmap and self.move_rect:
             painter = QPainter(self.image)
             painter.save()
+
             target_rect = QRect(
                 self.move_rect.topLeft() + self.move_offset,
                 QSize(
@@ -593,6 +615,7 @@ class Canvas(QFrame):
                     int(self.move_original_pixmap.height() * self.move_scale_y)
                 )
             )
+
             transform = QTransform()
             center = target_rect.center()
             transform.translate(center.x(), center.y())
@@ -750,6 +773,78 @@ class Canvas(QFrame):
         painter.drawText(pos, self.text_options["text"])
         painter.end()
 
+    def mirror_horizontal(self):
+        qimg = self.image.toImage().convertToFormat(QImage.Format.Format_RGBA8888)
+        width = qimg.width()
+        height = qimg.height()
+        ptr = qimg.bits()
+        ptr.setsize(qimg.sizeInBytes())
+        pil_img = Image.frombuffer("RGBA", (width, height), bytes(ptr), "raw", "RGBA", 0, 1)
+
+        mirrored = pil_img.transpose(Image.FLIP_LEFT_RIGHT)
+        data = mirrored.tobytes("raw", "RGBA")
+        qimg_mirrored = QImage(data, width, height, QImage.Format.Format_RGBA8888)
+        self.image = QPixmap.fromImage(qimg_mirrored)
+        self.update()
+
+    def mirror_vertical(self):
+        qimg = self.image.toImage().convertToFormat(QImage.Format.Format_RGBA8888)
+        width = qimg.width()
+        height = qimg.height()
+        ptr = qimg.bits()
+        ptr.setsize(qimg.sizeInBytes())
+        pil_img = Image.frombuffer("RGBA", (width, height), bytes(ptr), "raw", "RGBA", 0, 1)
+
+        mirrored = pil_img.transpose(Image.FLIP_TOP_BOTTOM)
+        data = mirrored.tobytes("raw", "RGBA")
+        qimg_mirrored = QImage(data, width, height, QImage.Format.Format_RGBA8888)
+        self.image = QPixmap.fromImage(qimg_mirrored)
+        self.update()
+
+    def rotate_90_cw(self):
+        qimg = self.image.toImage().convertToFormat(QImage.Format.Format_RGBA8888)
+        width = qimg.width()
+        height = qimg.height()
+        ptr = qimg.bits()
+        ptr.setsize(qimg.sizeInBytes())
+        pil_img = Image.frombuffer("RGBA", (width, height), bytes(ptr), "raw", "RGBA", 0, 1)
+
+        rotated = pil_img.transpose(Image.ROTATE_270)
+        data = rotated.tobytes("raw", "RGBA")
+        qimg_rotated = QImage(data, rotated.width, rotated.height, QImage.Format.Format_RGBA8888)
+        self.image = QPixmap.fromImage(qimg_rotated)
+        self.update()
+
+    def rotate_90_ccw(self):
+        qimg = self.image.toImage().convertToFormat(QImage.Format.Format_RGBA8888)
+        width = qimg.width()
+        height = qimg.height()
+        ptr = qimg.bits()
+        ptr.setsize(qimg.sizeInBytes())
+        pil_img = Image.frombuffer("RGBA", (width, height), bytes(ptr), "raw", "RGBA", 0, 1)
+
+        rotated = pil_img.transpose(Image.ROTATE_90)
+        data = rotated.tobytes("raw", "RGBA")
+        qimg_rotated = QImage(data, rotated.width, rotated.height, QImage.Format.Format_RGBA8888)
+        self.image = QPixmap.fromImage(qimg_rotated)
+        self.update()
+
+    def crop_to_selection(self):
+        # Stelle sicher, dass eine Auswahl existiert
+        if not self.selection_rect or self.selection_rect.isNull():
+            return  # Keine gültige Auswahl
+
+        # Hole das aktuelle Bild als QImage
+        qimg = self.image.toImage().convertToFormat(QImage.Format.Format_RGBA8888)
+
+        # Berechne den Ausschnitt basierend auf dem QRect
+        crop_rect = self.selection_rect.intersected(qimg.rect())  # Begrenzung auf Bildgröße
+        cropped = qimg.copy(crop_rect)
+
+        # Konvertiere zurück zu QPixmap
+        self.image = QPixmap.fromImage(cropped)
+        self.selection_rect = None  # Auswahl zurücksetzen
+        self.update()
 
 canvas = Canvas()
 canvas.setStyleSheet("background-color: lightgray;")
@@ -778,6 +873,19 @@ copy_selection.setShortcut("Ctrl+C")
 paste_selection = QAction(QIcon("colored_textures/paste.png"), "Paste", window)
 paste_selection.triggered.connect(canvas.paste_selection)
 paste_selection.setShortcut("Ctrl+V")
+
+rotate_90_cw_action = QAction(QIcon("colored_textures/rotate_90_cw.png"), "Rotate 90 degrees clockwise", window)
+rotate_90_cw_action.triggered.connect(canvas.rotate_90_cw)
+rotate_90_ccw_action = QAction(QIcon("colored_textures/rotate_90_ccw.png"), "Rotate 90 degrees counterclockwise", window)
+rotate_90_ccw_action.triggered.connect(canvas.rotate_90_ccw)
+
+mirror_horizontal_action = QAction(QIcon("colored_textures/mirror_horizontal.png"), "Mirror horizontally", window)
+mirror_horizontal_action.triggered.connect(canvas.mirror_horizontal)
+mirror_vertical_action = QAction(QIcon("colored_textures/mirror_vertical.png"), "Mirror vertically", window)
+mirror_vertical_action.triggered.connect(canvas.mirror_vertical)
+
+crop_selection_action = QAction(QIcon("colored_textures/crop_selection.png"), "Crop Image to Selection", window)
+crop_selection_action.triggered.connect(canvas.crop_to_selection)
 
 effects_action = QAction(window)
 effects_action.setIcon(QIcon("colored_textures/effect_1.png"))
@@ -857,6 +965,11 @@ top_toolbar.addAction(copy_selection)
 top_toolbar.addAction(paste_selection)
 top_toolbar.addAction(zoom_in)
 top_toolbar.addAction(zoom_out)
+top_toolbar.addAction(rotate_90_cw_action)
+top_toolbar.addAction(rotate_90_ccw_action)
+top_toolbar.addAction(mirror_horizontal_action)
+top_toolbar.addAction(mirror_vertical_action)
+top_toolbar.addAction(crop_selection_action)
 top_toolbar.addAction(effects_action)
 
 bottom_toolbar = QFrame()
@@ -877,35 +990,66 @@ def on_move_button_toggled(checked):
         canvas.disable_move_mode()
 move_button.clicked.connect(on_move_button_toggled)
 
-rselect_button = QToolButton()
-rselect_button.setIcon(QIcon("colored_textures/rectangular_selection.png"))
-rselect_button.setIconSize(QSize(45,45))
-rselect_button.setStyleSheet("border: none; background: transparent;")
+selection_button = QToolButton()
+selection_button.setIcon(QIcon("colored_textures/selection.png"))
+selection_button.setIconSize(QSize(45,45))
+selection_button.setStyleSheet("border: none; background: transparent;")
+selection_button.setCheckable(False)
+selection_button.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)  
+selection_menu = QMenu()
+selection_button.setMenu(selection_menu)
+selection_menu.setStyleSheet("""
+        QMenu { background-color: #b5b5b5;
+                font-family: 'Lexend Deca'; font-size: 17px;
+            }
+        QMenu::item {
+            padding: 4px 12px 4px 24px; 
+            height: 20px; 
+            }
+        QMenu::item:selected { background-color: #d3d3d3; }
+        QMenu::icon { width: 35px; height: 35px; margin-right: 8px; margin-left: 16px; }
+        QMenu::separator { height: 1px; background-color: #d3d3d3; margin: 5px 0; }
+        QMenu::item:disabled { color: gray; }
+        QMenu::item:checked { background-color: #909090; }
+        """)
+selection_group = QActionGroup(window)
+selection_group.setExclusive(True)
+
+def update_selection_mode(mode):
+    canvas.set_selection_mode(mode)
+    if mode == "rect":
+        selection_button.setIcon(QIcon("colored_textures/rectangular_selection.png"))
+    elif mode == "ellipse":
+        selection_button.setIcon(QIcon("colored_textures/circular_selection.png"))
+    elif mode == "lasso":
+        selection_button.setIcon(QIcon("colored_textures/lasso_selection.png"))
+    elif mode is None:
+        selection_button.setIcon(QIcon("colored_textures/selection.png"))
+
+rselect_button = QAction(QIcon("colored_textures/rectangular_selection.png"), " Rectangular", window)
 rselect_button.setCheckable(True)
-rselect_button.clicked.connect(lambda: canvas.set_selection_mode("rect"))
+rselect_button.triggered.connect(lambda checked: update_selection_mode("rect") if checked else update_selection_mode(None))
 
-
-cselect_button = QToolButton()
-cselect_button.setIcon(QIcon("colored_textures/circular_selection.png"))
-cselect_button.setIconSize(QSize(45,45))
-cselect_button.setStyleSheet("border: none; background: transparent;")
+cselect_button = QAction(QIcon("colored_textures/circular_selection.png"), " Circular", window)
 cselect_button.setCheckable(True)
-cselect_button.clicked.connect(lambda: canvas.set_selection_mode("ellipse"))
+cselect_button.triggered.connect(lambda checked: update_selection_mode("ellipse") if checked else update_selection_mode(None))
 
-lselect_button = QToolButton()
-lselect_button.setIcon(QIcon("colored_textures/lasso_selection.png"))
-lselect_button.setIconSize(QSize(45,45))
-lselect_button.setStyleSheet("border: none; background: transparent;")
+lselect_button = QAction(QIcon("colored_textures/lasso_selection.png"), " Lasso", window)
 lselect_button.setCheckable(True)
-lselect_button.clicked.connect(lambda: canvas.set_selection_mode("lasso"))
+lselect_button.triggered.connect(lambda checked: update_selection_mode("lasso") if checked else update_selection_mode(None))
 
-clear_button = QToolButton()
-clear_button.setIcon(QIcon("colored_textures/clear_selection.png"))
-clear_button.setIconSize(QSize(45,45))
-clear_button.setStyleSheet("border: none; background: transparent;")
-clear_button.clicked.connect(lambda: canvas.set_selection_mode(None))
-bottom_layout.addWidget(clear_button)
+clearsel_button = QAction(QIcon("colored_textures/clear_selection.png"), " Clear Selection", window)
+clearsel_button.setCheckable(False)
+clearsel_button.triggered.connect(lambda: update_selection_mode(None))
 
+selection_group.addAction(rselect_button)
+selection_group.addAction(cselect_button)
+selection_group.addAction(lselect_button)
+
+selection_menu.addAction(rselect_button)
+selection_menu.addAction(cselect_button)
+selection_menu.addAction(lselect_button)
+selection_menu.addAction(clearsel_button)
 
 shapes = QToolButton(window)
 shapes.setIcon(QIcon("colored_textures/shapes.png"))
@@ -918,25 +1062,38 @@ shapes.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
 shapes_group = QActionGroup(window)
 shapes_group.setExclusive(True)
 
+def update_shape_mode(mode):
+        canvas.set_shape_mode(mode)
+        if mode == "rect":
+            shapes.setIcon(QIcon("colored_textures/rectangle.png"))
+        elif mode == "ellipse":
+            shapes.setIcon(QIcon("colored_textures/ellipse.png"))
+        elif mode == "triangle":
+            shapes.setIcon(QIcon("colored_textures/triangle.png"))
+        elif mode == "line":
+            shapes.setIcon(QIcon("colored_textures/lines.png"))
+        elif mode is None:
+            shapes.setIcon(QIcon("colored_textures/shapes.png"))
+
 rectangle = QAction(QIcon("colored_textures/rectangle.png"), " Rectangle", window)
 rectangle.setCheckable(True)
-rectangle.triggered.connect(lambda checked: canvas.set_shape_mode("rect") if checked else canvas.set_shape_mode(None))
+rectangle.triggered.connect(lambda checked: update_shape_mode("rect") if checked else update_shape_mode(None))
 
 ellipse = QAction(QIcon("colored_textures/ellipse.png"), " Ellipse", window)
 ellipse.setCheckable(True)
-ellipse.triggered.connect(lambda checked: canvas.set_shape_mode("ellipse") if checked else canvas.set_shape_mode(None))
+ellipse.triggered.connect(lambda checked: update_shape_mode("ellipse") if checked else update_shape_mode(None))
 
 triangle = QAction(QIcon("colored_textures/triangle.png"), " Triangle", window)
 triangle.setCheckable(True)
-triangle.triggered.connect(lambda checked: canvas.set_shape_mode("triangle") if checked else canvas.set_shape_mode(None))
+triangle.triggered.connect(lambda checked: update_shape_mode("triangle") if checked else update_shape_mode(None))
 
 lines = QAction(QIcon("colored_textures/lines.png"), " Lines", window)
 lines.setCheckable(True)
-lines.triggered.connect(lambda checked: canvas.set_shape_mode("line") if checked else canvas.set_shape_mode(None))
+lines.triggered.connect(lambda checked: update_shape_mode("line") if checked else update_shape_mode(None))
 
 disableshape = QAction(QIcon("colored_textures/disableshape.png"), " Disable", window)
 disableshape.setCheckable(True)
-disableshape.triggered.connect(lambda checked: canvas.set_shape_mode(None) if checked else canvas.set_shape_mode(None))
+disableshape.triggered.connect(lambda checked: update_shape_mode(None) if checked else update_shape_mode(None))
 
 shapes_group.addAction(rectangle)
 shapes_group.addAction(triangle)
@@ -958,6 +1115,7 @@ shapes_menu.setStyleSheet("""
         QMenu::item:disabled { color: gray; }
         QMenu::item:checked { background-color: #909090; }
         """)
+
 
 shapes_menu.addAction(rectangle)
 shapes_menu.addAction(triangle)
@@ -1047,7 +1205,7 @@ erase_button.clicked.connect(lambda: [
 
 
 width_text = QLineEdit()
-width_text.setText("5")
+width_text.setText("2")
 width_text.setFixedSize(35,35)
 width_text.setStyleSheet("border: transparent; background: transparent;")
 width_text.setFont(QFont("Lexend Deca", 15))
@@ -1062,7 +1220,7 @@ width_text.textChanged.connect(update_width_from_text)
 
 width_slider = QSlider(Qt.Orientation.Horizontal)
 width_slider.setRange(1, 150)
-width_slider.setValue(5)
+width_slider.setValue(2)
 width_slider.setFixedSize(100,30)
 width_slider.setStyleSheet("""
     QSlider::groove:horizontal { background: white; height: 25px; border-radius: 5px; }
@@ -1108,20 +1266,16 @@ color_button.setStyleSheet("border: none; background: transparent;")
 color_button.clicked.connect(lambda: open_color_picker())
 
 spacer0 = QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-spacer1 = QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+#spacer1 = QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 spacer2 = QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-spacer3 = QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+#spacer3 = QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 spacer4 = QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-spacer5 = QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+#spacer5 = QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 spacer6 = QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
 bottom_layout.addSpacerItem(spacer0)
+bottom_layout.addWidget(selection_button)
 bottom_layout.addWidget(move_button)
-bottom_layout.addWidget(rselect_button)
-bottom_layout.addWidget(cselect_button)
-bottom_layout.addWidget(lselect_button)
-bottom_layout.addWidget(clear_button)
-bottom_layout.addSpacerItem(spacer1)
 bottom_layout.addWidget(shapes)
 bottom_layout.addWidget(text_button)
 bottom_layout.addSpacerItem(spacer2)
@@ -1129,13 +1283,11 @@ bottom_layout.addWidget(pen_button)
 bottom_layout.addWidget(marker_button)
 bottom_layout.addWidget(brush_button)
 bottom_layout.addWidget(erase_button)
-bottom_layout.addSpacerItem(spacer3)
 bottom_layout.addWidget(width_slider)
 bottom_layout.addWidget(width_text)
 bottom_layout.addSpacerItem(spacer4)
 bottom_layout.addWidget(color_picker)
 bottom_layout.addWidget(color_button)
-bottom_layout.addSpacerItem(spacer5)
 bottom_layout.addWidget(color_bucket)
 bottom_layout.addWidget(gradient)
 bottom_layout.addSpacerItem(spacer6)
@@ -1185,10 +1337,10 @@ def open_color_picker():
         canvas.set_pen_color(color)
 
 def open_blur_options():
-
     blur_options = QDialog(window)
     blur_options.setWindowTitle("Blur Options")
-    layout = QHBoxLayout()
+    blur_options.setWindowIcon(QIcon("colored_textures/blur.png"))
+    layout = QVBoxLayout()
     blur_options.setLayout(layout)
 
     blur_slider = QSlider(Qt.Orientation.Horizontal)
@@ -1197,10 +1349,15 @@ def open_blur_options():
 
     blur_text = QLineEdit()
     blur_text.setText("5")
+    blur_text.setStyleSheet("border: transparent; background: transparent; font-family: 'Lexend Deca'; font-size: 15px;")
     blur_text.setFixedSize(30,20)
     blur_text.setValidator(QIntValidator(1, 150))
 
     blur_slider.setFixedSize(100,20)
+    blur_slider.setStyleSheet("""
+            QSlider::groove:horizontal { background: white; height: 25px; border-radius: 5px; }
+            QSlider::handle:horizontal { background: #5b5b5b; width: 15px; height: 35px; border-radius: 5px; }
+        """)
     blur_slider.valueChanged.connect(lambda value: [
         canvas.set_blur_radius(value),
         blur_text.setText(str(value))
@@ -1216,25 +1373,37 @@ def open_blur_options():
     blur_text.textChanged.connect(update_value_from_text)
 
     blur_confirm = QPushButton("Confirm")
+    blur_confirm.setStyleSheet("border: transparent; background: #00B512; height: 30px; border-radius: 15px; font-family: 'Lexend Deca'; font-size: 17px; color: white;")
     blur_confirm.clicked.connect(lambda: canvas.apply_blur(int(blur_text.text())))
-
-    layout.addWidget(blur_slider)
-    layout.addWidget(blur_text)
+    layout2 = QHBoxLayout()
+    layout2.addWidget(blur_slider)
+    layout2.addWidget(blur_text)
+    layout.addLayout(layout2)
     layout.addWidget(blur_confirm)
+    
     
     blur_options.exec()
 
 def open_unsharp_mask_options():
     dialog = QDialog(window)
     dialog.setWindowTitle("Unsharp Mask Options")
+    dialog.setWindowIcon(QIcon("colored_textures/unsharp_mask.png"))
     layout = QVBoxLayout(dialog)
 
+
     radius_layout = QHBoxLayout()
-    radius_label = QLabel("Radius:")
+    radius_label = QLabel("R")
+    radius_label.setFont(QFont("Lexend Deca", 15))
     radius_slider = QSlider(Qt.Orientation.Horizontal)
     radius_slider.setRange(1, 10)
     radius_slider.setValue(2)
+    radius_slider.setStyleSheet("""
+            QSlider::groove:horizontal { background: white; height: 25px; border-radius: 5px; }
+            QSlider::handle:horizontal { background: #5b5b5b; width: 15px; height: 35px; border-radius: 5px; }
+        """)
     radius_text = QLineEdit("2")
+    radius_text.setFont(QFont("Lexend Deca", 15))
+    radius_text.setStyleSheet("border: transparent; background: transparent;")
     radius_text.setFixedWidth(40)
     radius_text.setValidator(QIntValidator(1, 10))
     radius_layout.addWidget(radius_label)
@@ -1242,12 +1411,20 @@ def open_unsharp_mask_options():
     radius_layout.addWidget(radius_text)
     layout.addLayout(radius_layout)
 
+
     percent_layout = QHBoxLayout()
-    percent_label = QLabel("Percent:")
+    percent_label = QLabel("%")
+    percent_label.setFont(QFont("Lexend Deca", 15))
     percent_slider = QSlider(Qt.Orientation.Horizontal)
     percent_slider.setRange(50, 500)
     percent_slider.setValue(150)
+    percent_slider.setStyleSheet("""
+            QSlider::groove:horizontal { background: white; height: 25px; border-radius: 5px; }
+            QSlider::handle:horizontal { background: #5b5b5b; width: 15px; height: 35px; border-radius: 5px; }
+        """)
     percent_text = QLineEdit("150")
+    percent_text.setFont(QFont("Lexend Deca", 15))
+    percent_text.setStyleSheet("border: transparent; background: transparent;")
     percent_text.setFixedWidth(50)
     percent_text.setValidator(QIntValidator(50, 500))
     percent_layout.addWidget(percent_label)
@@ -1255,12 +1432,20 @@ def open_unsharp_mask_options():
     percent_layout.addWidget(percent_text)
     layout.addLayout(percent_layout)
 
+
     threshold_layout = QHBoxLayout()
-    threshold_label = QLabel("Threshold:")
+    threshold_label = QLabel("T")
+    threshold_label.setFont(QFont("Lexend Deca", 15))
     threshold_slider = QSlider(Qt.Orientation.Horizontal)
     threshold_slider.setRange(0, 255)
     threshold_slider.setValue(3)
+    threshold_slider.setStyleSheet("""
+            QSlider::groove:horizontal { background: white; height: 25px; border-radius: 5px; }
+            QSlider::handle:horizontal { background: #5b5b5b; width: 15px; height: 35px; border-radius: 5px; }
+        """)
     threshold_text = QLineEdit("3")
+    threshold_text.setFont(QFont("Lexend Deca", 15))
+    threshold_text.setStyleSheet("border: transparent; background: transparent;")
     threshold_text.setFixedWidth(40)
     threshold_text.setValidator(QIntValidator(0, 255))
     threshold_layout.addWidget(threshold_label)
@@ -1275,7 +1460,13 @@ def open_unsharp_mask_options():
     percent_text.textChanged.connect(lambda t: percent_slider.setValue(int(t) if t.isdigit() else 150))
     threshold_text.textChanged.connect(lambda t: threshold_slider.setValue(int(t) if t.isdigit() else 3))
 
+    info = QLabel()
+    info.setText("R = Radius / % = Percent / T = Threshold")
+    info.setFont(QFont("Lexend Deca", 9))
+    layout.addWidget(info)
+
     confirm_btn = QPushButton("Confirm")
+    confirm_btn.setStyleSheet("border: transparent; background: #00B512; height: 30px; border-radius: 15px; font-family: 'Lexend Deca'; font-size: 17px; color: white;")
     def apply_unsharp():
         radius = int(radius_text.text())
         percent = int(percent_text.text())
@@ -1285,79 +1476,169 @@ def open_unsharp_mask_options():
     confirm_btn.clicked.connect(apply_unsharp)
     layout.addWidget(confirm_btn)
 
+    
     dialog.exec()
 
 def open_text_options_dialog():
 
     dialog = QDialog(window)
     dialog.setWindowTitle("Text Options")
+    dialog.setWindowIcon(QIcon("colored_textures/text.png"))
     layout = QVBoxLayout(dialog)
 
     text_edit = QLineEdit(canvas.text_options["text"])
-    layout.addWidget(QLabel("Text:"))
+    text_edit.setStyleSheet("border: transparent; background: white; border-radius: 5px; height: 50px; font-family: 'Lexend Deca'; font-size: 15px;")
     layout.addWidget(text_edit)
 
     font_combo = QFontComboBox()
     font_combo.setCurrentFont(canvas.text_options["font"])
-    layout.addWidget(QLabel("Font:"))
+    font_combo.setStyleSheet(("""
+            QFontComboBox {
+                background: white;
+                border: transparent;
+                border-radius: 5px;
+                font-size: 15px;
+                font-family: 'Lexend Deca';
+                height: 20px;
+            }
+            QFontComboBox::drop-down {
+                subcontrol-origin: padding;
+                subcontrol-position: top right;
+                width: 50px;
+                border-radius 5px;
+                background: transparent;
+            }
+    """))
     layout.addWidget(font_combo)
 
     size_slider = QSlider(Qt.Orientation.Horizontal)
     size_slider.setRange(8, 128)
     size_slider.setValue(canvas.text_options["size"])
+    size_slider.setStyleSheet("""
+            QSlider::groove:horizontal { background: white; height: 25px; border-radius: 5px; }
+            QSlider::handle:horizontal { background: #5b5b5b; width: 15px; height: 35px; border-radius: 5px; }
+        """)
     size_text = QLineEdit(str(canvas.text_options["size"]))
+    size_text.setStyleSheet("border: transparent; background: transparent; font-family: 'Lexend Deca'; font-size: 15px;")
     size_text.setFixedWidth(40)
     size_text.setValidator(QIntValidator(8, 128))
     size_layout = QHBoxLayout()
-    size_layout.addWidget(QLabel("Size:"))
     size_layout.addWidget(size_slider)
     size_layout.addWidget(size_text)
     layout.addLayout(size_layout)
 
-    color_btn = QPushButton("Pick Color")
-    color_preview = QLabel()
-    color_preview.setFixedSize(30, 30)
-    color_preview.setStyleSheet(f"background: {canvas.text_options['color'].name()}; border: 1px solid #333;")
+    color_btn = QPushButton()
+    color_btn.setFixedSize(30, 30)
+    color_btn.setStyleSheet(f"background: {canvas.text_options['color'].name()}; border: transparent; border-radius: 15px;")
     def pick_color():
         color = QColorDialog.getColor(canvas.text_options["color"], window)
         if color.isValid():
-            color_preview.setStyleSheet(f"background: {color.name()}; border: 1px solid #333;")
+            color_btn.setStyleSheet(f"background: {color.name()}; border: transparent; border-radius: 15px;")
             color_btn.setProperty("picked_color", color)
     color_btn.clicked.connect(pick_color)
-    color_layout = QHBoxLayout()
-    color_layout.addWidget(color_btn)
-    color_layout.addWidget(color_preview)
-    layout.addLayout(color_layout)
 
-    bold_cb = QCheckBox("Bold")
-    bold_cb.setChecked(canvas.text_options["bold"])
-    italic_cb = QCheckBox("Italic")
-    italic_cb.setChecked(canvas.text_options["italic"])
-    underline_cb = QCheckBox("Underline")
-    underline_cb.setChecked(canvas.text_options["underline"])
-    strike_cb = QCheckBox("Strikeout")
-    strike_cb.setChecked(canvas.text_options["strikeout"])
-    style_layout = QHBoxLayout()
-    style_layout.addWidget(bold_cb)
-    style_layout.addWidget(italic_cb)
-    style_layout.addWidget(underline_cb)
-    style_layout.addWidget(strike_cb)
-    layout.addLayout(style_layout)
+    bold_btn = QToolButton()
+    bold_btn.setText("B")
+    bold_btn.setCheckable(True)
+    bold_btn.setFont(QFont("Lexend Deca", 20))
+    bold_btn.setStyleSheet(("""
+            QToolButton {
+                background: white;
+                border: transparent;
+                border-radius: 5px;
+                min-width: 30px;
+                min-height: 30px;
+            }
+            QToolButton:checked {
+                background: #d3d3d3;
+                color: black;
+                border: transparent;
+            }
+        """))
+    bold_btn.setChecked(canvas.text_options["bold"])
+
+    italic_btn = QToolButton()
+    italic_btn.setText("I")
+    italic_btn.setCheckable(True)
+    italic_btn.setFont(QFont("Lexend Deca", 20))
+    italic_btn.setStyleSheet(("""
+            QToolButton {
+                background: white;
+                border: transparent;
+                border-radius: 5px;
+                min-width: 30px;
+                min-height: 30px;
+            }
+            QToolButton:checked {
+                background: #d3d3d3;
+                color: black;
+                border: transparent;
+            }
+        """))
+    italic_btn.setChecked(canvas.text_options["italic"])
+    
+    underline_btn = QToolButton()
+    underline_btn.setText("U")
+    underline_btn.setCheckable(True)
+    underline_btn.setFont(QFont("Lexend Deca", 20))
+    underline_btn.setStyleSheet(("""
+            QToolButton {
+                background: white;
+                border: transparent;
+                border-radius: 5px;
+                min-width: 30px;
+                min-height: 30px;
+            }
+            QToolButton:checked {
+                background: #d3d3d3;
+                color: black;
+                border: transparent;
+            }
+        """))
+    underline_btn.setChecked(canvas.text_options["underline"])
+
+    strike_btn = QToolButton()
+    strike_btn.setText("S")
+    strike_btn.setCheckable(True)
+    strike_btn.setFont(QFont("Lexend Deca", 20))
+    strike_btn.setStyleSheet(("""
+            QToolButton {
+                background: white;
+                border: transparent;
+                border-radius: 5px;
+                min-width: 30px;
+                min-height: 30px;
+            }
+            QToolButton:checked {
+                background: #d3d3d3;
+                color: black;
+                border: transparent;
+            }
+        """))
+    strike_btn.setChecked(canvas.text_options["strikeout"])
+    fontopt_layout = QHBoxLayout()
+    fontopt_layout.addWidget(color_btn)
+    fontopt_layout.addWidget(bold_btn)
+    fontopt_layout.addWidget(italic_btn)
+    fontopt_layout.addWidget(underline_btn)
+    fontopt_layout.addWidget(strike_btn)
+    layout.addLayout(fontopt_layout)
 
     size_slider.valueChanged.connect(lambda v: size_text.setText(str(v)))
     size_text.textChanged.connect(lambda t: size_slider.setValue(int(t) if t.isdigit() else 32))
 
     confirm_btn = QPushButton("Confirm")
+    confirm_btn.setStyleSheet("border: transparent; background: #00B512; height: 30px; border-radius: 15px; font-family: 'Lexend Deca'; font-size: 17px; color: white;")
     def apply_text_options():
         options = {
             "text": text_edit.text(),
             "font": font_combo.currentFont(),
             "size": int(size_text.text()),
             "color": color_btn.property("picked_color") if color_btn.property("picked_color") else canvas.text_options["color"],
-            "bold": bold_cb.isChecked(),
-            "italic": italic_cb.isChecked(),
-            "underline": underline_cb.isChecked(),
-            "strikeout": strike_cb.isChecked()
+            "bold": bold_btn.isChecked(),
+            "italic": italic_btn.isChecked(),
+            "underline": underline_btn.isChecked(),
+            "strikeout": strike_btn.isChecked()
         }
         canvas.set_text_options(options)
         dialog.accept()
@@ -1370,7 +1651,7 @@ def open_combined_adjustments(canvas):
 
     dialog = QDialog()
     dialog.setWindowTitle("Combined Adjustments")
-    dialog.setWindowIcon(QIcon("colored_textures/logo.png"))
+    dialog.setWindowIcon(QIcon("colored_textures/ca.png"))
     dialog.setFixedSize(300, 360)
 
     layout = QVBoxLayout()
@@ -1403,25 +1684,31 @@ def open_combined_adjustments(canvas):
 
     make_slider("R ", -100, 100)
     make_slider("B ", -100, 100)
-    make_slider("Y ", -100, 100)  
-
+    make_slider("Y ", -100, 100)
     make_slider("S ", -100, 100)
     make_slider("B ", -100, 100)
     make_slider("C ", -100, 100)
 
-
     confirm = QPushButton("Confirm")
+    confirm.setStyleSheet("border: transparent; background: #00B512; height: 30px; border-radius: 15px; font-family: 'Lexend Deca'; font-size: 17px; color: white;")
+    info = QLabel()
+    info.setText("R = Red / G = Green / Y = Yellow")
+    info.setFont(QFont("Lexend Deca", 9))
+    info2 = QLabel()
+    info2.setText("S = Saturation / B = Brightness / C = Contrast")
+    info2.setFont(QFont("Lexend Deca", 9))
+    layout.addWidget(info)
+    layout.addWidget(info2)
     layout.addWidget(confirm)
     dialog.setLayout(layout)
 
-
     def apply_adjustments():
+
         pil_image = ImageQt.fromqpixmap(canvas.image)
 
         r_shift = sliders["R "].value()
         b_shift = sliders["B "].value()
         y_shift = sliders["Y "].value()
-
 
         pixels = pil_image.load()
         for x in range(pil_image.width):
@@ -1436,10 +1723,8 @@ def open_combined_adjustments(canvas):
                     max(0, min(b, 255))
                 )
 
-
         saturation_factor = 1 + sliders["S "].value() / 100.0
         pil_image = ImageEnhance.Color(pil_image).enhance(saturation_factor)
-
 
         brightness_factor = 1 + sliders["B "].value() / 100.0
         pil_image = ImageEnhance.Brightness(pil_image).enhance(brightness_factor)
@@ -1456,5 +1741,4 @@ def open_combined_adjustments(canvas):
     dialog.exec()
 
 window.show()
-
 sys.exit(app.exec())
