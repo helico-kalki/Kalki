@@ -3,7 +3,7 @@ Kalki is a python-built, light image manipulation program aiming an intuitive de
 
 This program is 90% AI - I am not good at coding and actually not even in ambition to change this.
 
-The reason I wanted to create an image manipulation program was designing my own - all textures (and the layout) are by myself.
+The reason I wanted to create an image manipulation program was designing my own - all textures (and the layout) are by myself. In uploading this, I hope to see my vision take shape in the hands of the internet. This project also willingly does not have any copyright, you do not have to give me credit, just don't be evil making profit of something that's not supposed to do so.
 
 ## GUI
 <img width="999" height="1052" alt="image" src="https://github.com/user-attachments/assets/b2004a39-97b7-4e79-98b1-c4e1800fd19e" />
