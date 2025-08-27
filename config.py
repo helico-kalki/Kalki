@@ -1,4 +1,4 @@
-from PyQt6.QtGui import QFontDatabase, QFont
+
 # ✨ - * + KALKI CONFIG + * - ✨
 
 # 🧩 SHORTCUTS
@@ -100,6 +100,7 @@ BRUSHWIDTH=10
 # ⚪ Eraser
 ERASERCOLOR="white"
 ERASERWIDTH=30
+
 
 
 
