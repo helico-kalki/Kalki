@@ -78,12 +78,12 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
 - 🖱 Zoom with Ctrl and Mouse Scroll
 - 📮 Config File to Customize Kalki to your needs with Shortcuts for every feature and Default Values
 
-## 🎆 Further Ambition
-🌙 A Dark Mode is certainly on the Todo-List!
-
-🎪 I aim for an even more sharp design, but I'm limited by (my knowledge of) PyQt - although this is the best option by functionality.  
-Especially opening the Text tool is something i'd have implemented into the main frame, not an external window.  
-Also, the shortcuts are highlighted on the same level as the option in menus, which is not what I want.
+## 📌 Ideas
+- 🌙 Dark Mode
+- 🔲 Outline Tool
+- 〽 Courves
+- 🌈 Custom Color Selection
+- ❄ Color Temperature
 
 ## ♻ Changelog
 08/28/25 | 1.3 | Added **resizing canvas**, **fill selection (with gradient)** and a **warning message before closing Kalki**
