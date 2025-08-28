@@ -27,7 +27,8 @@ The font used is `Lexend Deca`, you'll have to install it on your own: https://f
 Of course, `Python` itself is required: https://www.python.org/downloads/
 
 ## 🖼 GUI
-<img width="1000" height="1055" alt="image" src="https://github.com/user-attachments/assets/385a776b-975b-462b-8845-b42aac07e6bf" />
+<img width="1001" height="1049" alt="image" src="https://github.com/user-attachments/assets/51322db0-f13c-41e8-8886-68a0d2ee733b" />
+
 
 As seen on the screenshot, the application consists of a **top actionbar**, the **white canvas** and the **task/toolbar**.
 
@@ -38,9 +39,10 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
 - ↪ Undo/Redo
 - ⏩ Copy/Paste
 - 🌌 Zoom In/Zoom Out
+- 🌊 Resize Canvas (Canvas will be morphed)
+- 💠 Crop Canvas to Selection
 - 🔄 Rotate 90 degrees (counter)clockwise
 - ⏸ Mirror vertically/horizontally
-- 💠 Crop Canvas to Selection
 - ⭐ Effects (12 Options)
   
       - 🚦 Combined Adjustments (Red, Blue, Yellow, Saturation, Brightness, Contrast)
@@ -77,20 +79,18 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
 - 📮 Config File to Customize Kalki to your needs (config.py)
 
 ## 🎆 Further Ambition
-📝 The Color Bucket and the Gradient tool are of course meant to fill the selection, not simply the canvas. This is yet to be implemented.
-
-🖼 Another feature yet to implement would be setting up the size of the canvas.
-
-🌙 As well, a Dark Mode option'd make my eyes very happy.
+🌙 A Dark Mode is certainly on the Todo-List!
 
 🎪 I aim for an even more sharp design, but I'm limited by (my knowledge of) PyQt - although this is the best option by functionality. Especially opening the Text tool is something i'd have implemented into the main frame, not an external window.
 
 ## ♻ Changelog
+08/28/25 | 1.3 | Added **resizing canvas** and **fill selection (with gradient)**
+
 08/27/25 | 1.2 | Added **configurable constants** (config.py file) and a **warning message before clearing canvas**
 
 08/27/25 | 1.1 | Added **Mirror**, **Rotate** and **Crop to Selection** (also minor design changes)
 
-07/27/25 | 1.0 | **Base** Version
+08/26/25 | 1.0 | **Base** Version
 
 <img width="100" height="100" alt="Kalki" src="https://github.com/user-attachments/assets/25a8c636-5a0c-4252-bb35-bf082ec20eeb" />
 
