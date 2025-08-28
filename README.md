@@ -89,7 +89,7 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
 - ❄ Color Temperature
 
 ## ♻ Changelog
-08/28/25 | 1.4 | The text menu not a **popup** anymore, but an **integrated menu**. Same goes for the **drawing tool**. Experiments on **text presets** and **dash/dot lines** are contained in this version. 
+08/28/25 | 1.4 | The text menu is not a **popup** anymore, but an **integrated menu**. Same goes for the **drawing tool**. Not yet working experiments on **text presets** and **dash/dot lines** are contained in this version. 
 
 08/28/25 | 1.3 | Added **resizing canvas**, **fill selection (with gradient)** and a **warning message before closing Kalki**
 
