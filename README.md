@@ -27,7 +27,8 @@ The font used is `Lexend Deca`, you'll have to install it on your own: https://f
 Of course, `Python` itself is required: https://www.python.org/downloads/
 
 ## 🖼 GUI
-<img width="1001" height="1049" alt="image" src="https://github.com/user-attachments/assets/51322db0-f13c-41e8-8886-68a0d2ee733b" />
+<img width="999" height="1052" alt="image" src="https://github.com/user-attachments/assets/95dcdbda-3300-4789-a697-ed86f2c2daf2" />
+
 
 
 As seen on the screenshot, the application consists of a **top actionbar**, the **white canvas** and the **task/toolbar**.
@@ -62,16 +63,18 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
 - 🧭 Selection (Rectangular, Circular, Lasso (not working), Delete Selection)
 - 🔆 Move/Scale Selection (must be clicked another time to submit new position/scale)
 - 🔶 Shapes (Rectangle, Triangle, Ellipse, Lines, Disable Shape Mode)
-- 🅰 Text (Customization Window, then applying to the canvas by a click)
-- ✏ Pen (Black, Width: 2)
-- 🖍 Marker (Yellow, Translucent, 20)
-- 🖌 Brush (Blue, 10, Graphics Tablet Compatibility)
-- 🧹 Eraser (White, 30)
-- ⏏ Pen Width Slider
+- 🅰 Text (Customization Menu, then applying to the canvas by a click)
+- 📝 Drawing
+
+         - ✏ Pen (Black, Width: 2)
+         - 🖍 Marker (Yellow, Translucent, 20)
+         - 🖌 Brush (Blue, 10, Graphics Tablet Compatibility)
+         - 🧹 Eraser (White, 30)
+
 - 🔬 Pick Color
 - 🎨 Select Color
-- ⏹ Fill Canvas with selected Color
-- ⏮ Fill Canvas with two-color gradient (left to right)
+- ⏹ Fill Selection with selected Color
+- ⏮ Fill Selection with two-color gradient (left to right)
 
 ### 🎀 Other Functionality
 - 🏓 Pan with Middle Mouse Click
@@ -86,6 +89,8 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
 - ❄ Color Temperature
 
 ## ♻ Changelog
+08/28/25 | 1.4 | The text menu not a **popup** anymore, but an **integrated menu**. Same goes for the **drawing tool**. Experiments on **text presets** and **dash/dot lines** are contained in this version. 
+
 08/28/25 | 1.3 | Added **resizing canvas**, **fill selection (with gradient)** and a **warning message before closing Kalki**
 
 08/27/25 | 1.2 | Added **configurable constants** (config.py file) and a **warning message before clearing canvas**
