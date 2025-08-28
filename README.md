@@ -15,7 +15,7 @@ You'll most likely need to type this into the `Terminal` (Visual Studio Code), a
 
     pip install pillow
 
-If not working, try
+If not working, try:
 
     py -m pip install pyqt6
 
@@ -86,7 +86,7 @@ Especially opening the Text tool is something i'd have implemented into the main
 Also, the shortcuts are highlighted on the same level as the option in menus, which is not what I want.
 
 ## ♻ Changelog
-08/28/25 | 1.3 | Added **resizing canvas** and **fill selection (with gradient)**
+08/28/25 | 1.3 | Added **resizing canvas**, **fill selection (with gradient)** and a **warning message before closing Kalki**
 
 08/27/25 | 1.2 | Added **configurable constants** (config.py file) and a **warning message before clearing canvas**
 
