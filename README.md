@@ -1,6 +1,6 @@
 # Kalki Image Manipulation Program
 
-✅ **Kalki** is a lightweight **image manipulation program** built in `Python`. It aims to have a **colorful and intuitive** design.
+✅ **Kalki** is a powerful **image manipulation program** built in `Python`. It aims to have a **colorful and intuitive** design.
 
 🤖 This program is 90% AI - I am **not good** at coding and actually not even in ambition to change this.
 
@@ -27,9 +27,8 @@ The font used is `Lexend Deca`, you'll have to install it on your own: https://f
 Of course, `Python` itself is required: https://www.python.org/downloads/
 
 ## 🖼 GUI
-<img width="999" height="1052" alt="image" src="https://github.com/user-attachments/assets/95dcdbda-3300-4789-a697-ed86f2c2daf2" />
 
-
+<img width="1000" height="1049" alt="image" src="https://github.com/user-attachments/assets/75028e43-802f-4127-b740-cc494ba42b34" />
 
 As seen on the screenshot, the application consists of a **top actionbar**, the **white canvas** and the **task/toolbar**.
 
@@ -71,10 +70,9 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
          - 🖌 Brush (Blue, 10, Graphics Tablet Compatibility)
          - 🧹 Eraser (White, 30)
 
-- 🔬 Pick Color
-- 🎨 Select Color
 - ⏹ Fill Selection with selected Color
 - ⏮ Fill Selection with two-color gradient (left to right)
+- 🎨 Select Color (Opens Pick Color Menu)
 
 ### 🎀 Other Functionality
 - 🏓 Pan with Middle Mouse Click
@@ -85,10 +83,11 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
 - 🌙 Dark Mode
 - 🔲 Outline Tool
 - 〽 Courves
-- 🌈 Custom Color Selection
 - ❄ Color Temperature
 
 ## ♻ Changelog
+08/30/23 | 1.5 | Added a **custom Pick Color** menu/popup, with preview, hex code, eyedropper, hsv sliders, rgba sliders and presets.
+
 08/28/25 | 1.4 | The text menu is not a **popup** anymore, but an **integrated menu**. Same goes for the **drawing tool**. Not yet working experiments on **text presets** and **dash/dot lines** are contained in this version. 
 
 08/28/25 | 1.3 | Added **resizing canvas**, **fill selection (with gradient)** and a **warning message before closing Kalki**
