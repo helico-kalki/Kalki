@@ -1,4 +1,4 @@
-# Kalki Image Manipulation Program
+# <img width="100" height="100" alt="Kalki" src="https://github.com/user-attachments/assets/25a8c636-5a0c-4252-bb35-bf082ec20eeb" /> Kalki Image Manipulation Program
 
 ✅ **Kalki** is a powerful **image manipulation program** built in `Python`. It aims to have a **colorful and intuitive** design.
 
@@ -98,7 +98,6 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
 
 08/26/25 | 1.0 | **Base** Version
 
-<img width="100" height="100" alt="Kalki" src="https://github.com/user-attachments/assets/25a8c636-5a0c-4252-bb35-bf082ec20eeb" />
 
 
 
