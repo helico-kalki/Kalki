@@ -90,9 +90,12 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 ## 📌 Ideas
 - 🔲 Outline Tool
 - 〽 Courves
+- 🆎 Text Presets (implemented, not working as supposed to)
+- ➗ Dash and Dot Line
+- 💥 Filter to Selection working for Combined Adjustments and Temperature/Tint
 
 ## ♻ Changelog
-08/31/25 | 1.7 | Finally fixed **Lasso Selection** tool and applying a filter with something selected will apply it only to the selection (not working for Combined Adjustments and Temp/Tint). Also minor **performance optimization** and **Zoom is centered** to the Cursor
+08/31/25 | 1.7 | Finally fixed the **Lasso Selection** tool and **Apply Filter to Selection** (not working for Combined Adjustments and Temp/Tint). Also minor **performance optimization** and **Zoom is centered** to the Cursor. The canvas is **not anti-aliased** making pixelart viable.
 
 08/31/25 | 1.6 | Added **Dark Mode**, **Temperature / Tint Effect** and a better file structure.
 
