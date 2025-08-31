@@ -27,10 +27,15 @@ The font used is `Lexend Deca`, you'll have to install it on your own: https://f
 Of course, `Python` itself is required: https://www.python.org/downloads/
 
 ## 🖼 GUI
+☀ Light Mode
 
-<img width="1000" height="1049" alt="image" src="https://github.com/user-attachments/assets/75028e43-802f-4127-b740-cc494ba42b34" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6d186ad4-1782-446e-9bf8-f1a2fe814fd3" />
 
-As seen on the screenshot, the application consists of a **top actionbar**, the **white canvas** and the **task/toolbar**.
+🌙 Dark Mode
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d76d4c37-6ed3-4491-a65f-08ead1dc761a" />
+
+As seen on the screenshots, the application consists of a **top actionbar**, the **canvas** and the **task/toolbar**.
 
 ### 🦺 Actionbar
 - *️⃣ New (Clear Canvas)
@@ -46,6 +51,7 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
 - ⭐ Effects (12 Options)
   
       - 🚦 Combined Adjustments (Red, Blue, Yellow, Saturation, Brightness, Contrast)
+      - 🌡 Temperature / Tint (Light Blue - Orange and Magenta - Green Color Correction)
       - 💧 Gaussian Blur
       - 💧 Smooth
       - 💧 Smooth More
@@ -57,6 +63,8 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
       - 🔑 Emboss
       - 👀 Detail
       - 💊 Invert Colors
+
+- 🌙 Dark Mode/Light Mode
 
 ### 🥏 Taskbar
 - 🧭 Selection (Rectangular, Circular, Lasso (not working), Delete Selection)
@@ -80,13 +88,13 @@ As seen on the screenshot, the application consists of a **top actionbar**, the 
 - 📮 Config File to Customize Kalki to your needs with Shortcuts for every feature and Default Values
 
 ## 📌 Ideas
-- 🌙 Dark Mode
 - 🔲 Outline Tool
 - 〽 Courves
-- ❄ Color Temperature
 
 ## ♻ Changelog
-08/30/23 | 1.5 | Added a **custom Pick Color** menu/popup, with preview, hex code, eyedropper, hsv sliders, rgba sliders and presets.
+08/31/25 | 1.6 | Added **Dark Mode** and **Temperature / Tint Effect**
+
+08/30/25 | 1.5 | Added a **custom Pick Color** menu/popup, with preview, hex code, eyedropper, hsv sliders, rgba sliders and presets.
 
 08/28/25 | 1.4 | The text menu is not a **popup** anymore, but an **integrated menu**. Same goes for the **drawing tool**. Not yet working experiments on **text presets** and **dash/dot lines** are contained in this version. 
 
