@@ -4,7 +4,7 @@
 
 🤖 This program is 90% AI - I am **not good** at coding and actually not even in ambition to change this.
 
-🎈 The reason I wanted to create an image manipulation program was **designing** my own - all textures (and the layout) are by myself. In uploading this, I hope to see my vision take shape in the hands of the internet. This project also willingly **does not have any copyright**, you do not have to give me credit, just don't be evil making profit of something that's not supposed to do so.
+🎈 The reason I wanted to create an image manipulation program was **designing** my own - all textures (and the layout) are by myself. In uploading this, I hope to see my vision take shape in the hands of the internet. Due to risks with AI generated code and the PyQt6 license, this project is published under the GPL license, although I'd wish this to have no copyright at all.
 
 ## 📥 Installation
 🔽 Download the **ZIP** with the green **Code** button and get the *Kalki-main* folder out of the **ZIP**.
