@@ -92,7 +92,7 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 - 〽 Courves
 
 ## ♻ Changelog
-08/31/25 | 1.6 | Added **Dark Mode** and **Temperature / Tint Effect**
+08/31/25 | 1.6 | Added **Dark Mode**, **Temperature / Tint Effect** and a better file structure.
 
 08/30/25 | 1.5 | Added a **custom Pick Color** menu/popup, with preview, hex code, eyedropper, hsv sliders, rgba sliders and presets.
 
