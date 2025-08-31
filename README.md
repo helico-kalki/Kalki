@@ -67,7 +67,7 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 - 🌙 Dark Mode/Light Mode
 
 ### 🥏 Taskbar
-- 🧭 Selection (Rectangular, Circular, Lasso (not working), Delete Selection)
+- 🧭 Selection (Rectangular, Circular, Lasso, Delete Selection)
 - 🔆 Move/Scale Selection (must be clicked another time to submit new position/scale)
 - 🔶 Shapes (Rectangle, Triangle, Ellipse, Lines, Disable Shape Mode)
 - 🅰 Text (Customization Menu, then applying to the canvas by a click)
@@ -84,7 +84,7 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 
 ### 🎀 Other Functionality
 - 🏓 Pan with Middle Mouse Click
-- 🖱 Zoom with Ctrl and Mouse Scroll
+- 🖱 Zoom with Mouse Scroll
 - 📮 Config File to Customize Kalki to your needs with Shortcuts for every feature and Default Values
 
 ## 📌 Ideas
@@ -92,6 +92,8 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 - 〽 Courves
 
 ## ♻ Changelog
+08/31/25 | 1.7 | Finally fixed **Lasso Selection** tool and applying a filter with something selected will apply it only to the selection (not working for Combined Adjustments and Temp/Tint). Also minor **performance optimization** and **Zoom is centered** to the Cursor
+
 08/31/25 | 1.6 | Added **Dark Mode**, **Temperature / Tint Effect** and a better file structure.
 
 08/30/25 | 1.5 | Added a **custom Pick Color** menu/popup, with preview, hex code, eyedropper, hsv sliders, rgba sliders and presets.
