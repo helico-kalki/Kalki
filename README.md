@@ -74,15 +74,16 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 - 📝 Drawing
 
          Presets:
-         - ✏ Pen (Black, Width: 2)
-         - 🖍 Marker (Yellow, Translucent, 20)
+         - ✏ Pen (Black, 2, Round)
+         - 🖍 Marker (Yellow, 20, Flat)
          - 🖌 Brush (Blue, 10, Graphics Tablet Compatibility)
-         - 🧹 Eraser (White, 30)
+         - 🧹 Eraser (White, 30, Round)
          General:
-         - Color
-         - Size
-         - Cap/Join Style (Round or Flat)
-         - Graphics Tablet Compatibility 
+         - 🎨 Color
+         - ↗️ Size
+         - 🟨 Cap/Join Style (Round or Flat)
+         - 🔅 Graphics Tablet Compatibility
+  
 - ⏹ Fill Selection with selected Color
 - ⏮ Fill Selection with two-color gradient (left to right)
 - 🎨 Select Color (Opens Pick Color Menu)
@@ -99,7 +100,9 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 - 🆎 Text Presets (implemented, not working as supposed to)
 - ➗ Dash and Dot Line
 - 💥 Filter to Selection working for Combined Adjustments and Temperature / Tint
-- 🎨 Design Recommendations on the Colors used, aims to make designing easier. (Complementary colors, hue shifting, etc.)
+- 🔮 Preview for Text and Shape placing
+- 🟡 Rounded Shapes option
+- 🎨 Design recommendations on the colors used, aims to make designing easier. (Complementary colors, hue shifting, etc.)
 
 ## ♻ Changelog
 08/31/25 | 1.7 | Finally fixed the **Lasso Selection** tool and **Apply Filter to Selection** (not working for Combined Adjustments and Temp/Tint). Also minor **performance optimization** and **Zoom is centered** to the Cursor. The canvas is **not anti-aliased** making pixelart viable.
