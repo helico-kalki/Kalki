@@ -48,7 +48,7 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 - 💠 Crop Canvas to Selection
 - 🔄 Rotate 90 degrees (counter)clockwise
 - ⏸ Mirror vertically/horizontally
-- ⭐ Effects (12 Options)
+- ⭐ Effects (13 Options)
   
       - 🚦 Combined Adjustments (Red, Blue, Yellow, Saturation, Brightness, Contrast)
       - 🌡 Temperature / Tint (Light Blue - Orange and Magenta - Green Color Correction)
@@ -73,16 +73,22 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 - 🅰 Text (Customization Menu, then applying to the canvas by a click)
 - 📝 Drawing
 
+         Presets:
          - ✏ Pen (Black, Width: 2)
          - 🖍 Marker (Yellow, Translucent, 20)
          - 🖌 Brush (Blue, 10, Graphics Tablet Compatibility)
          - 🧹 Eraser (White, 30)
-
+         General:
+         - Color
+         - Size
+         - Cap/Join Style (Round or Flat)
+         - Graphics Tablet Compatibility 
 - ⏹ Fill Selection with selected Color
 - ⏮ Fill Selection with two-color gradient (left to right)
 - 🎨 Select Color (Opens Pick Color Menu)
 
 ### 🎀 Other Functionality
+- 💡 Shortcuts for every action 
 - 🏓 Pan with Middle Mouse Click
 - 🖱 Zoom with Mouse Scroll
 - 📮 Config File to Customize Kalki to your needs with Shortcuts for every feature and Default Values
@@ -92,7 +98,8 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 - 〽 Courves
 - 🆎 Text Presets (implemented, not working as supposed to)
 - ➗ Dash and Dot Line
-- 💥 Filter to Selection working for Combined Adjustments and Temperature/Tint
+- 💥 Filter to Selection working for Combined Adjustments and Temperature / Tint
+- 🎨 Design Recommendations on the Colors used, aims to make designing easier. (Complementary colors, hue shifting, etc.)
 
 ## ♻ Changelog
 08/31/25 | 1.7 | Finally fixed the **Lasso Selection** tool and **Apply Filter to Selection** (not working for Combined Adjustments and Temp/Tint). Also minor **performance optimization** and **Zoom is centered** to the Cursor. The canvas is **not anti-aliased** making pixelart viable.
