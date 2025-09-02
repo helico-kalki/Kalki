@@ -101,8 +101,10 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 - ➗ Dash and Dot Line
 - 💥 Filter to Selection working for Combined Adjustments and Temperature / Tint
 - 🔮 Preview for Text and Shape placing
-- 🟡 Rounded Shapes option
+- 🟡 Rounded and Filled Shapes option
 - 🎨 Design recommendations on the colors used, aims to make designing easier. (Complementary colors, hue shifting, etc.)
+- 🪄 Magic Selection
+- *️⃣ Better Clear Canvas Menu
 
 ## ♻ Changelog
 08/31/25 | 1.7 | Finally fixed the **Lasso Selection** tool and **Apply Filter to Selection** (not working for Combined Adjustments and Temp/Tint). Also minor **performance optimization** and **Zoom is centered** to the Cursor. The canvas is **not anti-aliased** making pixelart viable.
