@@ -104,7 +104,11 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 - 🟡 Rounded and Filled Shapes option
 - 🎨 Design recommendations on the colors used, aims to make designing easier. (Complementary colors, hue shifting, etc.)
 - 🪄 Magic Selection
-- *️⃣ Better Clear Canvas Menu
+- *️⃣ New-Canvas Menu
+- 🫟 Brush Styles and Toggleable Anti-Aliasing
+- ✴️ Filter Preview
+- 🎨 HSL sliders in the Pick Color Menu
+- ⚖️ extra Color Balance Filter, add HSB to Combined Adjustments 
 
 ## ♻ Changelog
 08/31/25 | 1.7 | Finally fixed the **Lasso Selection** tool and **Apply Filter to Selection** (not working for Combined Adjustments and Temp/Tint). Also minor **performance optimization** and **Zoom is centered** to the Cursor. The canvas is **not anti-aliased** making pixelart viable.
