@@ -95,21 +95,23 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 - 📮 Config File to Customize Kalki to your needs with Shortcuts for every feature and Default Values
 
 ## 📌 Ideas
-- 🔲 Outline Tool
-- 〽 Courves
-- 🆎 Text Presets (implemented, not working as supposed to)
-- ➗ Dash and Dot Line
 - 💥 Filter to Selection working for Combined Adjustments and Temperature / Tint
 - 🔮 Preview for Text and Shape placing
 - 🟡 Rounded and Filled Shapes option
-- 🎨 Design recommendations on the colors used, aims to make designing easier. (Complementary colors, hue shifting, etc.)
-- 🪄 Magic Selection
-- *️⃣ New-Canvas Menu
-- 🫟 Brush Styles and Toggleable Anti-Aliasing
+- 🥁 Shape-Snapping with Shift
 - ✴️ Filter Preview
+- *️⃣ New-Canvas Menu
+- 📐 X and Y Mouse Position and Size of Selection shown in the frame
+- 🔲 Outline Tool
+- 〽 Courves
+- ➗ Dash and Dot Line, Arrow Lines
+- 🪄 Magic Selection
+- 🫟 Brush Styles and Toggleable Anti-Aliasing
 - 🎨 HSL sliders in the Pick Color Menu
-- ⚖️ extra Color Balance Filter, add HSB to Combined Adjustments
-- 🥁 Snapping with Shift
+- 🪟 Toggleable Pixel-Grid when zooming in closely
+- 🗃️ Layers
+- 📔 History Menu
+- 🎨 Design recommendations on the colors used, aims to make designing easier. (Complementary colors, hue shifting, etc.)
 
 ## ♻ Changelog
 08/31/25 | 1.7 | Finally fixed the **Lasso Selection** tool and **Apply Filter to Selection** (not working for Combined Adjustments and Temp/Tint). Also minor **performance optimization** and **Zoom is centered** to the Cursor. The canvas is **not anti-aliased** making pixelart viable.
