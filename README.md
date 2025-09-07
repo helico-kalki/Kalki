@@ -113,6 +113,8 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 - 📔 History Menu
 - 🎨 Design recommendations on the colors used, aims to make designing easier. (Complementary colors, hue shifting, etc.)
 
+#### ▶ You have an idea or fix to share? Feel free to open an issue! 👋
+
 ## ♻ Changelog
 08/31/25 | 1.7 | Finally fixed the **Lasso Selection** tool and **Apply Filter to Selection** (not working for Combined Adjustments and Temp/Tint). Also minor **performance optimization** and **Zoom is centered** to the Cursor. The canvas is **not anti-aliased** making pixelart viable.
 
