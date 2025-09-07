@@ -105,8 +105,8 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 - 🔲 Outline Tool
 - 〽 Courves
 - ➗ Dash and Dot Line, Arrow Lines
-- 🪄 Magic Selection
-- 🫟 Brush Styles and Toggleable Anti-Aliasing
+- ✨ Magic Selection
+- 🖌 Brush Styles and Toggleable Anti-Aliasing
 - 🎨 HSL sliders in the Pick Color Menu
 - 🪟 Toggleable Pixel-Grid when zooming in closely
 - 🗃️ Layers
