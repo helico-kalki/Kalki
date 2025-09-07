@@ -108,7 +108,7 @@ As seen on the screenshots, the application consists of a **top actionbar**, the
 - ✨ Magic Selection
 - 🖌 Brush Styles and Toggleable Anti-Aliasing
 - 🎨 HSL sliders in the Pick Color Menu
-- 🪟 Toggleable Pixel-Grid when zooming in closely
+- 🧇 Toggleable Pixel-Grid when zooming in closely
 - 🗃️ Layers
 - 📔 History Menu
 - 🎨 Design recommendations on the colors used, aims to make designing easier. (Complementary colors, hue shifting, etc.)
